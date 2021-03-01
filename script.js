@@ -4,8 +4,7 @@ const port = 3000
 const fs = require("fs")
 const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
-// var jsdom = require("jsdom");
-// const $ = require("jquery")(new jsdom.JSDOM().window)
+
 
 //Configuração HandleBars
     app.engine('handlebars', handlebars({defaultLayout:"main"}))
@@ -15,15 +14,16 @@ const bodyParser = require("body-parser")
     app.use(bodyParser.urlencoded({extended:false}))
     app.use(bodyParser.json())
 
-function lerRegistros(){
-    const registro = fs.readFileSync("./data/registro.json", "utf-8")
-    return JSON.parse(registro)
-}
+//Funções para acessar os registros
+    function lerRegistros(){
+        const registro = fs.readFileSync("./data/registro.json", "utf-8")
+        return JSON.parse(registro)
+    }
 
-function editarRegistros(obj){
-    const dados = JSON.stringify(obj)
-    fs.writeFileSync("./data/registro.json", dados, "utf-8")
-}
+    function editarRegistros(obj){
+        const dados = JSON.stringify(obj)
+        fs.writeFileSync("./data/registro.json", dados, "utf-8")
+    }
 
 
 //Rotas
@@ -90,7 +90,8 @@ function editarRegistros(obj){
         res.redirect('/')
 
     })
-
+    
+    //Deletar
     app.get('/deletar/:id', function(req, res){
         const {id} = req.params
         const todosRegistros = lerRegistros()

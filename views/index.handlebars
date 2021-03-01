@@ -2,7 +2,7 @@
         
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="float-left d-inline col-8">
@@ -12,36 +12,36 @@
                         <a href="/cadastro" class="btn btn-primary">Adicionar novo</a>
                     </div>
                 </div>
-                    <table id="tblDados" class="table">
-                        <thead>
+                <table id="tblDados" class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome Completo</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each registro}}
                             <tr class="text-center">
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome Completo</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Telefone</th>
-                                <th>Ações</th>
+                                <td>{{id}}</td>
+                                <td>{{nome}}</td>
+                                <td>{{email}}</td>
+                                <td>{{telefone}}</td>
+                                <td>
+                                    <a href="/editar/{{id}}" class="btn btn-info btn-sm">
+                                        Editar
+                                    </a>
+                                    
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="apagarRegistro({{id}})">
+                                        Deletar
+                                    </button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {{#each registro}}
-                                <tr class="text-center">
-                                    <td>{{id}}</td>
-                                    <td>{{nome}}</td>
-                                    <td>{{email}}</td>
-                                    <td>{{telefone}}</td>
-                                    <td>
-                                        <a href="/editar/{{id}}" class="btn btn-info btn-sm">
-                                            Editar
-                                        </a>
-                                        
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="apagarRegistro({{id}})">
-                                            Deletar
-                                        </button>
-                                    </td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
